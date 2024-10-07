@@ -35,3 +35,13 @@ def decrypt_file(file_path, key):
     with open(dec_file_path, 'wb') as dec_file:
         dec_file.write(decrypted_data)  # Writes the decrypted data to a new file
     messagebox.showinfo("Decryption", "File decrypted successfully!")
+
+
+#----------------------------GUI---------------------------------------#
+#What the Encrypt button does
+def encrypt_button_action():
+    file_path = filedialog.askopenfilename()  # Opensfile dialog to select a file
+    if file_path:
+        encrypt_file(file_path)  # Encrypt the selected file
+
+
