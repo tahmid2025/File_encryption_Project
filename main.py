@@ -40,8 +40,33 @@ def decrypt_file(file_path, key):
 #----------------------------GUI---------------------------------------#
 #What the Encrypt button does
 def encrypt_button_action():
-    file_path = filedialog.askopenfilename()  # Opensfile dialog to select a file
+    file_path = filedialog.askopenfilename()  # Opens the file dialog to select a file
     if file_path:
-        encrypt_file(file_path)  # Encrypt the selected file
+        encrypt_file(file_path)  # Encrypts the selected file
 
+# What the Decrypt button does
+def decrypt_button_action():
+    file_path = filedialog.askopenfilename()  # Opens file dialog to select a file
+    if file_path:
+        key = simpledialog.askstring("Input", "Enter the decryption key:")  # Asks for the decryption key
+        if key:
+            try:
+                decrypt_file(file_path, key)  # Decrypts the selected file
+            except Exception as e:
+                messagebox.showerror("Error", "Invalid key or corrupted file.")  # Shosw error if decryption fails
+
+# Main GUI setup
+root = tk.Tk()
+root.title("File Encryption/Decryption")
+
+# Encrypt button
+encrypt_button = tk.Button(root, text="Encrypt", command=encrypt_button_action)
+encrypt_button.pack(pady=10)
+
+# Decrypt button
+decrypt_button = tk.Button(root, text="Decrypt", command=decrypt_button_action)
+decrypt_button.pack(pady=10)
+
+root.mainloop()  # Runs the GUI event loop
+    
 
